@@ -1,0 +1,68 @@
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pdb
+*.so
+*.egg
+*.egg-info/
+.eggs/
+dist/
+build/
+env/
+venv/
+.venv/
+
+# Byte-compiled / optimized / DLL files
+*.pyc
+*.pyo
+*.pyd
+
+# Unit test / coverage reports
+.coverage
+.coverage.*
+.cache
+pytest_cache/
+htmlcov/
+
+# Virtual environment files
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Jupyter notebooks
+.ipynb_checkpoints/
+
+# MyPy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Logs
+*.log
+
+# Environment variables
+.env
+.env.*
+*.env
+
+# --- IDEs & Editors ---
+# PyCharm / IntelliJ
+.idea/
+
+# VSCode configs (optional; keep if you want them tracked)
+.vscode/
+
+# --- OS Files ---
+# macOS
+.DS_Store
+# Windows
+Thumbs.db
+
+# --- Other ---
+# If using SQLite or local files
+*.sqlite3
