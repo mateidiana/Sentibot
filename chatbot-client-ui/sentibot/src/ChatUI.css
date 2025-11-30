@@ -1,0 +1,78 @@
+.chat-wrapper {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #e9e9e9;
+}
+
+.chat-container {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif;
+  width: 90vw;
+  height: 90vh;
+  max-width: 600px;
+
+  display: flex;
+  flex-direction: column;
+
+  background: #f5f5f5;
+  border-radius: 14px;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+}
+
+.chat-window {
+  flex: 1;
+  padding: 16px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.chat-message {
+  padding: 10px 14px;
+  border-radius: 14px;
+  max-width: 75%;
+  font-size: 15px;
+}
+
+.chat-message.user {
+  align-self: flex-end;
+  background: #4f8cff;
+  color: white;
+}
+
+.chat-message.bot {
+  align-self: flex-start;
+  background: #e0e0e0;
+  color: #333;
+}
+
+.chat-input-row {
+  display: flex;
+  padding: 12px;
+  background: #ffffff;
+  border-top: 1px solid #ccc;
+  gap: 8px;
+}
+
+.chat-input-row input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 15px;
+}
+
+.chat-input-row button {
+  padding: 10px 18px;
+  border: none;
+  background: #4f8cff;
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 15px;
+}
