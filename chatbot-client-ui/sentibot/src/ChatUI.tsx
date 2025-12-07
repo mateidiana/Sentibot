@@ -1,5 +1,6 @@
 import { useState } from "react";
 import type { KeyboardEvent } from "react";
+import axios from "axios";
 import "./ChatUI.css";
 
 type Message = {
@@ -10,13 +11,45 @@ type Message = {
 export default function ChatUI() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false);
 
-  const sendMessage = () => {
+  const sendMessage = async () => {
     if (!input.trim()) return;
 
+    // Add user's message
     setMessages((prev) => [...prev, { text: input, sender: "user" }]);
+    setLoading(true);
 
-    setInput("");
+    try {
+      // Call backend API
+      const response = await axios.post(
+        "http://localhost:8000/detect-emotion",
+        {
+          text: input,
+        }
+      );
+
+      // Get emotion from response
+      const { emotion } = response.data;
+
+      // Add bot's message (for now, just display detected emotion)
+      setMessages((prev) => [
+        ...prev,
+        {
+          text: `Detected emotion: ${emotion}`,
+          sender: "bot",
+        },
+      ]);
+    } catch (error) {
+      console.error("Error calling backend:", error);
+      setMessages((prev) => [
+        ...prev,
+        { text: "Error: could not detect emotion", sender: "bot" },
+      ]);
+    } finally {
+      setLoading(false);
+      setInput("");
+    }
   };
 
   const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
@@ -32,6 +65,9 @@ export default function ChatUI() {
               {msg.text}
             </div>
           ))}
+          {loading && (
+            <div className="chat-message bot">Detecting emotion...</div>
+          )}
         </div>
 
         <div className="chat-input-row">
@@ -42,7 +78,9 @@ export default function ChatUI() {
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={handleKeyDown}
           />
-          <button onClick={sendMessage}>Send</button>
+          <button onClick={sendMessage} disabled={loading}>
+            Send
+          </button>
         </div>
       </div>
     </div>
