@@ -55,6 +55,7 @@ Provide each suggestion on a separate line.
         ]
 
 
-if __name__ == "__main__":
-    test_suggestions = get_gemini_suggestions("joy", "I just got a promotion at work!")
-    print("Gemini suggestions:", test_suggestions)
+
+# if __name__ == "__main__":
+#     test_suggestions = get_gemini_suggestions("joy", "I just got a promotion at work!")
+#     print("Gemini suggestions:", test_suggestions)
