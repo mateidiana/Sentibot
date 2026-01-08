@@ -30,16 +30,16 @@ export default function ChatUI() {
       );
 
       // Get emotion from response
-      const { emotion } = response.data;
+      const { emotion, suggestions } = response.data;
 
-      // Add bot's message (for now, just display detected emotion)
-      setMessages((prev) => [
-        ...prev,
-        {
-          text: `Detected emotion: ${emotion}`,
-          sender: "bot",
-        },
-      ]);
+  // Add bot's message: display Gemini suggestions instead of just emotion
+  setMessages((prev) => [
+    ...prev,
+    {
+      text: `Suggestions:\n- ${suggestions.join("\n- ")}`,
+      sender: "bot",
+    },
+  ]);
     } catch (error) {
       console.error("Error calling backend:", error);
       setMessages((prev) => [
