@@ -1,6 +1,7 @@
 from fastapi import APIRouter
 from pydantic import BaseModel
 from models.emotion_model import detect_emotion
+from services.gemini_suggestions import get_gemini_suggestions
 
 router = APIRouter()
 
@@ -11,11 +12,17 @@ class Message(BaseModel):
 
 @router.post("/detect-emotion")
 def detect_emotion_endpoint(message: Message):
-    # dummy response for now
-    # return {
-    #     "emotion": "neutral",
-    #     "confidence": 0.99,
-    #     "input": message.text
-    # }
+    # 1️⃣ Detect emotion locally
     result = detect_emotion(message.text)
-    return result
+    emotion = result.get("emotion", "neutral")
+
+    # 2️⃣ Generate suggestions from Gemini
+    suggestions = get_gemini_suggestions(emotion, message.text)
+
+    # 3️⃣ Return combined response
+    return {
+        "input": message.text,
+        "emotion": emotion,
+        "confidence": result.get("confidence", 1.0),
+        "suggestions": suggestions
+    }
