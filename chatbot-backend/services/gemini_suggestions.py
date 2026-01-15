@@ -12,16 +12,19 @@ MODEL_NAME = "models/gemini-3-pro-preview"
 
 def get_gemini_suggestions(emotion: str, user_text: str) -> list[str]:
     prompt = f"""
-You are a supportive assistant.
+    You are a supportive assistant.
 
-The user's emotional state is: {emotion}
-User message: "{user_text}"
+    The user's emotional state is: {emotion}
+    User message: "{user_text}"
 
-Give exactly 3 short, practical suggestions.
-Use empathetic language.
-Do NOT mention emotion detection or AI.
-Provide each suggestion on a separate line.
-"""
+    Give exactly 3 short, practical suggestions.
+    Use empathetic language.
+    Do NOT mention emotion detection or AI.
+    Provide each suggestion on a separate line.
+
+    For at least one suggestion, include a YouTube video or music link that fits the user's emotion.
+    Format links like this: [Description](https://youtube.com/...)
+    """
 
     try:
         response = client.models.generate_content(
