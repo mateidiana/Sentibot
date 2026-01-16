@@ -36,7 +36,7 @@ export default function ChatUI() {
   setMessages((prev) => [
     ...prev,
     {
-      text: `Suggestions:\n- ${suggestions.join("\n- ")}`,
+      text: `Detected emotion: ${emotion}\n\nSuggestions:\n- ${suggestions.join("\n- ")}`,
       sender: "bot",
     },
   ]);
